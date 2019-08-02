@@ -20,6 +20,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
+/**
+ *  Singleton class to handle fetches from Giphy API.
+ *  Register as a listener to receive the List of GiphyData when it's ready.
+ *  Pagination is maintained for subsequent fetches.
+ */
 public class Giphy {
     public enum Endpoint{
         TRENDING("https://api.giphy.com/v1/gifs/trending"),

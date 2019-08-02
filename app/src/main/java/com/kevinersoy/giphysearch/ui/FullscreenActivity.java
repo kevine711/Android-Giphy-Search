@@ -32,8 +32,8 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         GlideApp.with(this)
                 .asGif()
                 .load(mGiphyData)
