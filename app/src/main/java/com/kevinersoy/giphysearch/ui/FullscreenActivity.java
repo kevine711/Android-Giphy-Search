@@ -36,7 +36,7 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onStart();
         GlideApp.with(this)
                 .asGif()
-                .load(mGiphyData)
+                .load(mGiphyData.getImages().getOriginal().getUrl())
                 .into(mGifImageView);
     }
 }

@@ -1,6 +1,7 @@
 package com.kevinersoy.giphysearch.data;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -42,15 +43,16 @@ public class GiphyModelLoader extends BaseGlideUrlLoader<GiphyData> {
 
     @Override
     protected String getUrl(GiphyData giphyData, int width, int height, Options options) {
-        GiphyImage fixedHeight = giphyData.getImages().getFixedHeight();
+        GiphyImage fixedHeight = giphyData.getImages().getFixedHeightDownsampled();
         int fixedHeightDifference = getDifference(fixedHeight, width, height);
-        GiphyImage fixedWidth = giphyData.getImages().getFixedWidth();
+        GiphyImage fixedWidth = giphyData.getImages().getFixedWidthDownsampled();
         int fixedWidthDifference = getDifference(fixedWidth, width, height);
         if(fixedHeightDifference < fixedWidthDifference && !TextUtils.isEmpty(fixedHeight.getUrl())){
             return fixedHeight.getUrl();
         } else if(!TextUtils.isEmpty(fixedWidth.getUrl())){
             return fixedWidth.getUrl();
         } else if(!TextUtils.isEmpty(giphyData.getImages().getOriginal().getUrl())){
+            Log.d("ModelLoader", "Using oringinal size");
             return giphyData.getImages().getOriginal().getUrl();
         } else{
             return null;
